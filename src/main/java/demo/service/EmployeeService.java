@@ -1,6 +1,9 @@
 package demo.service;
 
+import demo.model.Category;
+import demo.model.Developer;
 import demo.model.Employee;
+import demo.repository.DeveloperRepository;
 import demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,8 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private DeveloperRepository developerRepository;
 
     public void testEmployees(){
 
@@ -55,5 +60,33 @@ public class EmployeeService {
 
         System.out.println(mendez);
         System.out.println(jose);
+
+
     }
+    public void testDevelopers(){
+        Developer developer = new Developer();
+        developer.setName("Juan");
+        developer.setSurename("Fernandez");
+        developer.setSalary(1000.0);
+        developer.setDateIncorporation(new Date());
+        developer.setCategory(Category.JUNIOR);
+        developerRepository.save(developer);
+
+        Developer developer2 = new Developer();
+        developer2.setName("Pepe");
+        developer2.setSurename("García");
+        developer2.setSalary(3000.0);
+        developer2.setDateIncorporation(new Date());
+        developer2.setCategory(Category.SENIOR);
+        developerRepository.save(developer2);
+
+        Developer developer3 = new Developer();
+        developer3.setName("Mario");
+        developer3.setSurename("Mendez");
+        developer3.setSalary(25000.0);
+        developer3.setDateIncorporation(new Date());
+        developer3.setCategory(Category.ARCHITECT);
+        developerRepository.save(developer3);
+    }
+
 }
